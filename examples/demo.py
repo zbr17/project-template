@@ -1,4 +1,3 @@
-from logging import warning
 import os
 import sys
 import random
@@ -31,8 +30,8 @@ def main():
     if opt.seed is not None:
         random.seed(opt.seed)
         torch.manual_seed(opt.seed)
-    cudnn.deterministic = opt.is_deterministic
-    cudnn.benchmark = opt.is_benchmark
+    cudnn.deterministic = opt.not_deterministic
+    cudnn.benchmark = opt.not_benchmark
 
     opt.ngpus_per_node = torch.cuda.device_count()
     if opt.is_distributed:
@@ -95,6 +94,10 @@ def main_worker(device, convert_dict, opt):
             "datasets": [
                 {"train": "{}_train.yaml".format(opt.dataset)},
                 {"test": "{}_test.yaml".format(opt.dataset)}
+            ],
+            "models": [
+                {"trunk": "{}.yaml".format(opt.model)},
+                {"embedder": "{}_mlp.yaml".format(opt.model)}
             ]
         }
     )
@@ -107,8 +110,8 @@ def main_worker(device, convert_dict, opt):
     manager.run(
         phase=opt.phase,
         start_epoch=start_epoch,
-        is_test=opt.is_test,
-        is_save=opt.is_save,
+        is_test=opt.not_test,
+        is_save=opt.not_save,
         warm_up=opt.warm_up,
         warm_up_list=opt.warm_up_list
     )

@@ -12,7 +12,7 @@ losses:
 
 models:
   - trunk: bninception.yaml
-  - embedder: MLP_bninception.yaml
+  - embedder: bninception_mlp.yaml
 
 evaluators:
   - default: Calculator.yaml
@@ -39,9 +39,6 @@ transforms:
 datasets:
   - train: cub200_train.yaml
   - test: cub200_test.yaml
-
-# samplers:
-#   - train: MPerClassSampler.yaml
 
 recorders:
   - default: base_recorder.yaml
