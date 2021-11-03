@@ -11,6 +11,6 @@ scikit-learn >= 0.24.1
 tensorboard >= 2.4.0
 wandb >= 0.10.22
 timm == 0.3.2
-gedml >= 0.1.4
+gedml >= 0.2.0
 graphviz
 torchdistlog

@@ -1,3 +1,5 @@
+> Update with [`GeDML version=0.2.0`](https://github.com/zbr17/GeDML)
+
 # NAME (TEMPLATE)
 
 This repository is the official PyTorch implementation of **NAME**. 
